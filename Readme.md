@@ -10,4 +10,11 @@ When `:remote` it grabs version from _ruby-lang.org/en/downloads_, when `:local`
 
 When fallback is true, and there are network problems, it fallbacks to the constant.
 
+Using like:
+
+    if Gem::Version.new(RUBY_VERSION) < Gem::Version.new('2.5.2')
+      require 'latest_ruby_version_is'
+      raise "Wanna #{ latest_ruby_version_is :remote } ruby, :(me crying)."
+    end
+
 That's all folks.
