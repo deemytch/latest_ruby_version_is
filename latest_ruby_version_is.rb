@@ -1,14 +1,18 @@
 require 'net/http'
+require 'json'
 
-def latest_ruby_version_is( src = :remote , fallback: true )
-  ruby_is = '2.7.1'.freeze
+LATEST_HARDCODED_RUBY_VERSION = '2.7.1'.freeze
+
+def latest_ruby_version_is( src = :remote , fallback = true )
   case src
-  when :local then ruby_is
+  when :local then LATEST_HARDCODED_RUBY_VERSION
   when :remote
     begin
-      Net::HTTP.get( URI 'https://www.ruby-lang.org/en/downloads/')[ /The current stable version is (\d+\.\d+\.\d+)/, 1 ]
+      JSON.parse(
+        Net::HTTP.get( URI 'https://api.github.com/repos/ruby/ruby/tags?per_page=1')
+        ).first['name'][1..-1].gsub('_','.')
     rescue
-      fallback ? ruby_is : raise
+      fallback ? LATEST_HARDCODED_RUBY_VERSION : raise
     end
   else
     raise ArgumentError.new( 'src must be :local or :remote.' )

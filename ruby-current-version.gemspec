@@ -1,9 +1,9 @@
 Gem::Specification.new do |lib|
 
   lib.name          = 'latest_ruby_version_is'
-  lib.version       = '0.1.0'
-  lib.date          = '2020-05-19'
-  lib.summary       = 'Simple additions for standard classes.'
+  lib.version       = '0.1.2'
+  lib.date          = '2020-05-20'
+  lib.summary       = 'Determine which is the last ruby version.'
   lib.files         = ['latest_ruby_version_is.rb']
   lib.author        = 'deemytch'
   lib.email         = 'aspamkiller@yandex.ru'
