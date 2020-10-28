@@ -1,8 +1,8 @@
 Gem::Specification.new do |lib|
 
   lib.name          = 'latest_ruby_version_is'
-  lib.version       = '0.1.2'
-  lib.date          = '2020-05-20'
+  lib.version       = '0.1.3'
+  lib.date          = '2020-10-28'
   lib.summary       = 'Determine which is the last ruby version.'
   lib.files         = ['latest_ruby_version_is.rb']
   lib.author        = 'deemytch'

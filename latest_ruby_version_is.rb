@@ -1,7 +1,7 @@
 require 'net/http'
 require 'json'
 
-LATEST_HARDCODED_RUBY_VERSION = '2.7.1'.freeze
+LATEST_HARDCODED_RUBY_VERSION = '2.7.2'.freeze
 
 def latest_ruby_version_is( src = :remote , fallback = true )
   case src
@@ -10,7 +10,7 @@ def latest_ruby_version_is( src = :remote , fallback = true )
     begin
       JSON.parse(
         Net::HTTP.get( URI 'https://api.github.com/repos/ruby/ruby/tags?per_page=1')
-        ).first['name'][1..-1].gsub('_','.')
+        ).find{|i| i['name'] !~ /preview/ }.i['name'][1..-1].gsub('_','.')
     rescue
       fallback ? LATEST_HARDCODED_RUBY_VERSION : raise
     end
